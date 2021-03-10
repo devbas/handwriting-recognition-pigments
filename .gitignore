@@ -1,0 +1,7 @@
+data/images/
+data/segment_annotations/ 
+
+models/
+
+sandbox/mask-rccn/Mask_RCNN/
+sandbox/mask-rccn/env/
