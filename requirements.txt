@@ -1,0 +1,5 @@
+segments-ai
+numpy
+tensorflow==1.15
+scipy
+scikit-image

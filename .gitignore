@@ -3,5 +3,13 @@ data/segment_annotations/
 
 models/
 
-sandbox/mask-rccn/Mask_RCNN/
-sandbox/mask-rccn/env/
+Mask_RCNN/
+env/
+
+data/
+
+*.h5
+
+*.local
+
+*-checkpoint.ipynb
