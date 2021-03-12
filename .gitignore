@@ -13,3 +13,5 @@ data/
 *.local
 
 *-checkpoint.ipynb
+
+processed_data/*
