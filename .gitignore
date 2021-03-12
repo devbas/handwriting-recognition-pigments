@@ -15,3 +15,5 @@ data/
 *-checkpoint.ipynb
 
 processed_data/*
+
+app/backend/__pycache__/*

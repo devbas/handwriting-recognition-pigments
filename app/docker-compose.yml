@@ -1,0 +1,49 @@
+version: '3'
+services: 
+  db:  
+    command: [
+      '--disable-partition-engine-check',
+      '--innodb-buffer-pool-size=1G'
+    ] # Check more info about this command at: https://github.com/docker-library/mysql/issues/361
+    ports: 
+      - 127.0.0.1:3309:3306
+    volumes: 
+      - ./database/sql-scripts:/docker-entrypoint-initdb.d
+      - ./database/cron/root:/etc/crontabs/root
+      - ./database/cron-scripts:/home
+    build: 
+      context: ./database/
+      dockerfile: Dockerfile
+    environment: 
+      - MYSQL_DATABASE=pigments
+      - MYSQL_ROOT_PASSWORD=root
+    networks: 
+      - app
+  backend: 
+    build: 
+      context: ./backend/
+      dockerfile: Dockerfile
+    ports: 
+      - "127.0.0.1:5002:5000"
+    depends_on: 
+      - db
+    volumes: 
+      - ./backend:/opt/code
+  frontend: 
+    build: 
+      context: ./frontend/
+      dockerfile: Dockerfile
+    volumes: 
+      - ./frontend:/var/www/pigments/app/frontend
+      - '/var/www/pigments/app/node_modules' 
+    ports: 
+      - 127.0.0.1:5001:3000
+    networks: 
+      - app 
+    depends_on: 
+      - "db"
+      - "backend"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+networks: 
+  app:
