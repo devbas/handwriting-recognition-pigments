@@ -1,9 +1,34 @@
 import logo from './logo.svg';
 import './index.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+
+import NotebookSingleComponent from './containers/notebookSingle'
+import RecipeComponent from './containers/recipe'
+import NotebookListComponent from './containers/notebookList'
+import NotebookCreateComponent from './containers/notebookCreate'
 
 function App() {
   return (
-    <div className="bg-gray-100">
+    <Router>
+      <Switch>
+        <Route path="/notebook/new" component={NotebookCreateComponent}/>
+        <Route path="/notebook/:notebookId" component={NotebookSingleComponent}/>
+        <Route path="/notebook/:notebookId/:recipId" component={RecipeComponent}/>
+        <Route path="/">
+          <NotebookListComponent/>
+        </Route>
+      </Switch>
+    </Router>
+  );
+}
+
+export default App;
+
+/* <div className="bg-gray-100">
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-gray-900">
@@ -18,8 +43,4 @@ function App() {
           </div>
         </div>
       </main>
-    </div>
-  );
-}
-
-export default App;
+    </div> */

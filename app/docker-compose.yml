@@ -35,7 +35,7 @@ services:
       dockerfile: Dockerfile
     volumes: 
       - ./frontend:/var/www/pigments/app/frontend
-      - '/var/www/pigments/app/node_modules' 
+      - '/var/www/pigments/app/frontend/node_modules' 
     ports: 
       - 127.0.0.1:5001:3000
     networks: 
@@ -44,6 +44,6 @@ services:
       - "db"
       - "backend"
     environment:
-      - CHOKIDAR_USEPOLLING=true
+      CHOKIDAR_USEPOLLING: "true"
 networks: 
   app:
