@@ -6,7 +6,7 @@ import Header from './header'
 import Dropzone from '../containers/dropzone'
 
 // const NotebookCreate = ({ getRootProps, getInputProps, isDragActive }) => (
-  const NotebookCreate = ({ onTitleChange, title }) => (
+  const NotebookCreate = ({ onTitleChange, title, onSubmitNotebookClick }) => (
   <div className="bg-gray-100 min-h-screen">
     <Header/>
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:p-6">
@@ -69,7 +69,7 @@ import Dropzone from '../containers/dropzone'
             Cancel
           </button>
         </Link>
-        <button type="submit" className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        <button type="submit" onClick={onSubmitNotebookClick} className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
           Save
         </button>
       </div>

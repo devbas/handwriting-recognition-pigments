@@ -1,4 +1,4 @@
-export const notebookTitle = (state = {}, action) => {
+export const notebookTitle = (state = '', action) => {
   switch (action.type) {
     case 'SET_NEW_NOTEBOOK_TITLE':
       return action.title
@@ -7,7 +7,7 @@ export const notebookTitle = (state = {}, action) => {
   }
 }
 
-export const acceptedFiles = (state = {}, action) => {
+export const acceptedFiles = (state = [], action) => {
   switch (action.type) {
     case 'SET_ACCEPTED_UPLOAD_FILES': 
       return action.files

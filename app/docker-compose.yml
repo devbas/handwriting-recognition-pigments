@@ -24,18 +24,20 @@ services:
       context: ./backend/
       dockerfile: Dockerfile
     ports: 
-      - "127.0.0.1:5002:5000"
+      - "0.0.0.0:5000:5000"
     depends_on: 
       - db
     volumes: 
       - ./backend:/opt/code
+    networks:
+      - app
   frontend: 
     build: 
       context: ./frontend/
       dockerfile: Dockerfile
     volumes: 
       - ./frontend:/var/www/pigments/app/frontend
-      - '/var/www/pigments/app/frontend/node_modules' 
+      # - '/var/www/pigments/app/frontend/node_modules' 
     ports: 
       - 127.0.0.1:5001:3000
     networks: 

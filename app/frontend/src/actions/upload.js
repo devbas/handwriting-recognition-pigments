@@ -31,12 +31,34 @@ export const uploadNotebook = () => {
   return (dispatch, getState) => {
 
     // upload the title, obtain a notebook ID
-    axios.post(`/api/notebook/new`, { 
-      name: getState().notebookTitle 
+    axios({
+      method: 'POST', 
+      url: '/api/notebook/new', 
+      data: `name=${getState().notebookTitle}`
     }).then((resp) => {
       const notebookId = resp.data.notebookId
 
-      console.log('notebook created!', notebookId)
+      getState().acceptedFiles.forEach((file) => {
+        const formData = new FormData()
+        formData.append('file', file)
+
+        axios({
+          method: 'POST',
+          url: '/api/notebook/photo-upload',
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
+          data: formData
+        })
+      })
+    })
+
+    // axios.post(`/api/notebook/new`, { 
+    //   name: getState().notebookTitle 
+    // }).then((resp) => {
+    //   const notebookId = resp.data.notebookId
+
+    //   console.log('notebook created!', notebookId)
       // list images 
       // getState().acceptedFiles.forEach((file) => {
       //   // Upload each image with Axios along with a notebook ID
@@ -52,8 +74,8 @@ export const uploadNotebook = () => {
       //   })
       //   //  
       // })
-    }).catch((err) => {
-      console.log(`error creating new notebook: ${err}`)
-    })
+    // }).catch((err) => {
+    //   console.log(`error creating new notebook: ${err}`)
+    // })
   }
 }

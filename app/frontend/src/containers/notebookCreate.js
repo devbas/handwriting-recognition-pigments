@@ -12,10 +12,15 @@ class NotebookCreate extends Component {
 
     // this.onDrop = this.onDrop.bind(this)
     this.onTitleChange = this.onTitleChange.bind(this)
+    this.onSubmitNotebookClick = this.onSubmitNotebookClick.bind(this)
   }
 
   onTitleChange(e) {
     this.props.actions.setNotebookTitle(e.target.value)
+  }
+
+  onSubmitNotebookClick() {
+    this.props.actions.uploadNotebook()
   }
 
   render() {
@@ -24,6 +29,7 @@ class NotebookCreate extends Component {
       <NotebookCreateComponent 
         title={this.props.notebookTitle}
         onTitleChange={this.onTitleChange}
+        onSubmitNotebookClick={this.onSubmitNotebookClick}
       />
     )
   }
